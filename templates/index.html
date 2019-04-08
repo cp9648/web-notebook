@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/static/css/list.css" />
+    <style type="text/css">
+        .tag-itme {
+            color: #666;
+        }
+        .tag-itme:hover {
+            color: #fa1;
+        }
+    </style>
+</head>
+<body style="background-image: url(static/img/timg.jpg);">
+    <form class="form-line" action="/" method="GET">
+        日期：
+        <select class="sel-day" name="req_day">
+            <option value="">--未选择--</option>
+            {% for day in days %}
+                <option value="{{ day }}">{{ day }}</option>
+            {% endfor %}
+        </select>
+        <div class="dv-query">
+            关键词：
+            <input size="30" type="text" name="query" placeholder="关键词（可选、多个用逗号分隔）" />
+        </div>
+        <input type="hidden" name="hid-tags" value="" />
+        <button class="btn-query">查 询</button>
+    </form>
+    <br />标签：
+    <div class="tags-wrapper form-line">
+    {% for tag in tags %}
+        <span data-id="{{ tag }}" class="tag-itme {% if tag in selected %}choose{% endif %}" title="{{ tags[tag] }}">{{ tags[tag] }}</span>
+    {% endfor %}
+    </div>
+    <div class="dv-result">
+        搜索结果
+        <span class="result-count">({{ result|count }})</span>
+        --<a href="edit" style="color: gray;font-size: 0.4em;">添加新的笔记</a>
+    </div>
+    <form action=""></form>
+    <ul class="note-list">
+        {% for i in result %}
+        <li>
+            <div class="not-head">
+                <a href="/details/{{ i.id }}">{{ i.title }}</a>
+            </div>
+            <div class="not-body">
+                <span class="note-date">{{ i.day }}</span>
+            </div>
+        </li>
+        {% else %}
+        <li>
+            <h1>怎么说呐，你还没有笔记！</h1>
+        </li>
+        {% endfor %}
+    </ul>
+    <script type="text/javascript" src="/static/js/list.js"></script>
+</body>
+</html>

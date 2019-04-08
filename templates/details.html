@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+        body {
+            background-image: url('/static/img/timg.jpg');
+        }
+        .font{
+            font-size: 0.4em;
+            color: gray;
+        }
+        .divs{
+            border: 1px solid gray;
+            background-color: #fff5e4;
+        }
+    </style>
+</head>
+<body>
+    <h2>标题：{{ title }}
+        <a class="font" href="/edit?id={{ id }}"> -- 修改</a>
+        <a class="font" href="/deletes?id={{ id }}">--删除</a>
+    </h2>
+    <label class="font">文件创建时间：{{ day }}</label><br />
+    <div class="divs">
+        <pre>{{ content }}</pre>
+    </div>
+</body>
+</html>

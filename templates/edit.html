@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>新建笔记</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/edit.css">
+    <style type="text/css">
+        body{
+            background-image: url(static/img/timg.jpg);
+        }
+        .font{
+            font-size: 0.4em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/note_get">
+        {% if id %}
+            <input type="hidden" name="id" value="{{ id }}" />
+        {% endif %}
+        <h3>{% if id %}修改笔记<label class="font">----文件创建时间：{{ day }}</label>{% else %}添加笔记{% endif %}</h3>
+        <div class="form-line">
+            标题：
+            <input size="30" type="text" value="{{ title }}" name="note-title" placeholder="笔记标题" />
+        </div>
+        <div class="form-line">
+            内容：
+            <textarea class="note-content" name="note-content" cols="71" rows="20" placeholder="笔记内容">{{ content }}</textarea>
+        </div>
+        <div class="form-line">
+            标签：
+            <input size="69" type="text" name="note-tags" value="{{ tags }}" placeholder="笔记标签（空格分隔）" />
+        </div>
+        <div class="form-line btn-line">
+            <button>提 交</button>
+        </div>
+    </form>
+</body>
+</html>
